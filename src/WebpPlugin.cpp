@@ -28,11 +28,12 @@
 
 class WebpHandler: public QImageIOHandler{
 	private:
-		int quality = 100;
+		int quality;
 	public:
 		WebpHandler( QIODevice *device ){
 			setDevice( device );
 			setFormat( "webp" );
+			quality = 100;
 		}
 		
 		bool canRead() const;
@@ -76,7 +77,7 @@ bool WebpHandler::read( QImage *img_pointer ){
 	}
 	
 	*img_pointer = img;
-	delete raw;
+	free( raw );
 	return true;
 }
 
@@ -120,6 +121,7 @@ bool WebpHandler::write( const QImage &image ){
 			size = WebPEncodeRGB( data, image.width(), image.height(), stride, quality+1, &output );
 	}
 	
+	delete[] data;
 	if( !output || size == 0 )
 		return false;
 	
@@ -142,7 +144,7 @@ QImageIOPlugin::Capabilities WebpPlugin::capabilities( QIODevice *device, const 
 }
 
 QImageIOHandler* WebpPlugin::create( QIODevice *device, const QByteArray &format ) const{
-	return (QImageIOHandler*) new WebpHandler( device );
+	return new WebpHandler( device );
 }
 
 
