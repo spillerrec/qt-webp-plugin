@@ -81,7 +81,8 @@ bool WebpHandler::read( QImage *img_pointer ){
 	return true;
 }
 
-bool WebpHandler::write( const QImage &image ){
+bool WebpHandler::write( const QImage &img ){
+	QImage image = img;
 	bool alpha = image.hasAlphaChannel();
 	unsigned pixel_count = alpha ? 4 : 3;
 	unsigned stride = pixel_count * image.width();
@@ -89,6 +90,10 @@ bool WebpHandler::write( const QImage &image ){
 	uint8_t* data = new uint8_t[ stride * image.height() ];
 	if( !data )
 		return false;
+	
+	//Make sure the input is in ARGB
+	if( image.format() != QImage::Format_RGB32 && image.format() != QImage::Format_ARGB32 )
+		image = image.convertToFormat( QImage::Format_ARGB32 );
 	
 	for( int iy=0; iy<image.height(); ++iy ){
 		const QRgb* in = (const QRgb*)image.constScanLine( iy );
