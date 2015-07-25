@@ -1,6 +1,6 @@
-# qt5-webp-plugin
+# qt-webp-plugin
 
-WebP plugin for Qt5 image loading
+Enables Qt4 and Qt5 applications to load and save images in the WebP image format.
 
 ### Features
 
@@ -12,7 +12,7 @@ WebP plugin for Qt5 image loading
 
 **Dependencies**
 
-- Qt5
+- Qt
 - qmake
 - libwebp
 
@@ -23,4 +23,4 @@ WebP plugin for Qt5 image loading
 
 **Installation**
 
-After successful compilation you should have a webp.* file (extension dependent on OS). You can install this globally or application specific. If the file is placed in Qt's plug-in folder under *imageformats*, it will be available to all Qt5 applications. To only use it with a specific application, create a folder called *imageformats* in the executables folder and place the plug-in there.
+After successful compilation you should have a webp.* file (extension dependent on OS). You can install this globally or application specific. To install it globally, copy it to *QTDIR/plugins/imageformats/*. To only use it with a specific application, create a folder called *imageformats* in the executable's folder and place the plug-in there.

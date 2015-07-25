@@ -26,6 +26,10 @@
 #include "webp/decode.h"
 #include "webp/encode.h"
 
+#if QT_VERSION < 0x050000
+Q_EXPORT_PLUGIN2(pnp_webpplugin, WebpPlugin)
+#endif
+
 class WebpHandler: public QImageIOHandler{
 	private:
 		int quality;

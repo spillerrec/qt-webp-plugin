@@ -20,7 +20,10 @@
 
 class WebpPlugin: public QImageIOPlugin{
 	Q_OBJECT
+	
+#if QT_VERSION >= 0x050000
 	Q_PLUGIN_METADATA(IID "org.qt-project.Qt.QImageIOHandlerFactoryInterface" FILE "extensions.json")
+#endif
 	
 	public:
 		QStringList keys() const;
