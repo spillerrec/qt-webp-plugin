@@ -2,6 +2,9 @@
 
 Enables Qt4 and Qt5 applications to load and save images in the WebP image format.
 
+**NOTICE** Since version 5.3, Qt is bundled with a WebP plugin. You might need to install the qt5-imageformats package (or similar) to get it. See https://github.com/ArchangelSDY/qwebpa for a fork with animation support.
+For Qt 4, you would still need this or https://github.com/stevenyao/webp .
+
 ### Features
 
 - Reading WebP images
